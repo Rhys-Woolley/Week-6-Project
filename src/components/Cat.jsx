@@ -4,12 +4,10 @@ import '../App.css'
 
 const CatComponent = (props) => {
   return (
-    <>
-      <CatPicHolder>
-        <CatPic src={props.cat.url}/>
-        <CatNameTag>{props.cat.name}</CatNameTag>
-      </CatPicHolder>
-    </>
+    <CatPicHolder key={props.cat.id}>
+      <CatPic src={props.cat.url}/>
+      <CatNameTag>{props.cat.name}</CatNameTag>
+    </CatPicHolder>
   )
 }
 

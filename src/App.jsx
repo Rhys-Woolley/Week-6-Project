@@ -14,16 +14,30 @@ class Cat {
 }
 
 function App() {
-  const [catData, setCatData] = useState([]);
-  const [catList, setCatList] = useState([]);
+  const [rawCatData, setRawCatData] = useState([]);
+  const [catObjects, setCatObjects] = useState([]);
   const [basket, setBasket] = useState([]);
 
   useEffect(() => {
+    setRawCatData([]); // Prevent loading an infinite number of cats whenever the page rerenders.
+
     const fetchCats = async () => {
       const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
       const data = await response.json();
-      
-      setCatData(data);
+      // Make a second request to cover any gaps left by the items we're going to remove. 
+      const response2 = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
+      const data2 = await response2.json();
+
+      // Filters out any gifs.
+      const tempData = [...data, ...data2].filter((item) => {
+        if (!item.url.endsWith(".gif")) return item;
+        else console.log("removed", item.url);
+      });
+
+      // Only display the first 15. Unless there are more than 5 gifs across both requests
+      // this should mean there aren't any gaps. Shouldn't break anything if there are more
+      // than 5, but it should keep things more consistent overall.
+      setRawCatData(tempData.slice(0, 15));
     }
     
     fetchCats();
@@ -32,14 +46,14 @@ function App() {
   useEffect(() => {
     const tempList = [];
 
-    catData.map((item) => {
+    rawCatData.map((item) => {
       const cat = new Cat(item.id, item.url, faker.person.firstName(), Math.random() > 0.5 ? "M" : "F")
       
       tempList.push(cat);
     })
 
-    setCatList(tempList); 
-  }, [catData]);
+    setCatObjects(tempList); 
+  }, [rawCatData]);
 
   const addToBasket = (cat) => {
 
@@ -49,8 +63,8 @@ function App() {
     <>
       <div id="topBar"></div>
       <div className="catComponents">
-        {catList.map((cat) => {
-          return <CatComponent key={cat.id} cat={cat} addFunc={addToBasket}/>
+        {catObjects.map((cat, index) => {
+          return <CatComponent key={index} cat={cat} addFunc={addToBasket}/> 
         })}
       </div>
       <div id="basket"></div>
