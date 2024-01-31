@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Cat from './components/Cat';
 
 function App() {
   const [cats, setCats] = useState([]);
@@ -23,11 +24,11 @@ function App() {
   return (
     <>
       <div id="topBar"></div>
+      <div className="catComponents">
       {cats.map((cat) => {
-        return (
-          <img key={cat.id} src={cat.url} />
-        )
+        return <Cat key={cat.id} url={cat.url} />
       })}
+      </div>
       <div id="basket"></div>
     </>
   )
