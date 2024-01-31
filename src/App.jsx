@@ -16,6 +16,7 @@ class Cat {
 function App() {
   const [catData, setCatData] = useState([]);
   const [catList, setCatList] = useState([]);
+  const [basket, setBasket] = useState([]);
 
   useEffect(() => {
     const fetchCats = async () => {
@@ -40,12 +41,16 @@ function App() {
     setCatList(tempList); 
   }, [catData]);
 
+  const addToBasket = (cat) => {
+
+  }
+
   return (
     <>
       <div id="topBar"></div>
       <div className="catComponents">
         {catList.map((cat) => {
-          return <CatComponent key={cat.id} cat={cat} />
+          return <CatComponent key={cat.id} cat={cat} addFunc={addToBasket}/>
         })}
       </div>
       <div id="basket"></div>
