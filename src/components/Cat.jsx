@@ -31,6 +31,8 @@ const CatPicHolder = styled.div`
   height: ${imageHeight}px;
   width: ${imageWidth}px;
   overflow: hidden;
+  border-radius: 5px;
+  margin: 10px;
 
   &:hover img {
     scale: 1.2;
@@ -39,10 +41,11 @@ const CatPicHolder = styled.div`
 
 const CatNameTag = styled.p`
   user-select: none;
-  color: white;
+  color: white;  
+  font-weight: 400;
   font-size: 24pt;
   position:relative;
   top: -56px;
   margin: 0px 14px;
-  filter: drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black)
+  filter: drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black)
 `
