@@ -25,14 +25,19 @@ const CatPic = styled.img`
   transition: 0.3s ease-out;
   z-index: 0;
   scale: 1.05; // Should be enough to hide the borders some of the images have.
+  position:absolute;
+  z-index: -1;
 `
 
 const CatPicHolder = styled.div`
   height: ${imageHeight}px;
   width: ${imageWidth}px;
   overflow: hidden;
+  contain: paint;
   border-radius: 5px;
   margin: 10px;
+  display: flex;
+  align-items: end;
 
   &:hover img {
     scale: 1.2;
@@ -45,7 +50,6 @@ const CatNameTag = styled.p`
   font-weight: 400;
   font-size: 24pt;
   position:relative;
-  top: -56px;
-  margin: 0px 14px;
+  margin: 8px 14px;
   filter: drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black)
 `
