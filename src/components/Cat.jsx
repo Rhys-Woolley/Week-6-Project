@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import '../App.css'
 
-const Cat = (props) => {
+const CatComponent = (props) => {
   return (
     <>
       <CatPicHolder>
@@ -12,7 +12,7 @@ const Cat = (props) => {
   )
 }
 
-export default Cat
+export default CatComponent
 
 const imageHeight = 250;
 const imageWidth = 350;
