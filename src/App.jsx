@@ -1,43 +1,52 @@
 import { useState, useEffect } from 'react'
-import './App.css'
 import CatComponent from './components/Cat';
+import { faker } from '@faker-js/faker';
+import './App.css'
 
 class Cat {
-  constructor (id, url) {
+  constructor (id, url, name, sex) {
       this.id = id;
       this.url = url;
+
+      this.name = name;
+      this.sex = sex;
   }
 }
 
 function App() {
-  const [response, setResponse] = useState([]);
-  const [cats, setCats] = useState([]);
+  const [catData, setCatData] = useState([]);
+  const [catList, setCatList] = useState([]);
 
   useEffect(() => {
     const fetchCats = async () => {
       const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
       const data = await response.json();
       
-      setResponse(data);
+      setCatData(data);
     }
     
     fetchCats();
   }, []);
 
   useEffect(() => {
-    response.map((item) => {    
-      setCats(cats + [new Cat(item.id, item.url)]);
+    const tempList = [];
+
+    catData.map((item) => {
+      const cat = new Cat(item.id, item.url, faker.person.firstName(), Math.random() > 0.5 ? "M" : "F")
+      
+      tempList.push(cat);
     })
-  }, [response, cats]);
-  
+
+    setCatList(tempList); 
+  }, [catData]);
 
   return (
     <>
       <div id="topBar"></div>
       <div className="catComponents">
-      {response.map((cat) => {
-        return <CatComponent key={cat.id} url={cat.url} />
-      })}
+        {catList.map((cat) => {
+          return <CatComponent key={cat.id} cat={cat} />
+        })}
       </div>
       <div id="basket"></div>
     </>
