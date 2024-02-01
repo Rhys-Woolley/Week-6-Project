@@ -25,7 +25,7 @@ const CatButton = styled.button`
   margin: 14px 6px;
   justify-self: right;
   font-size: 24pt;
-  padding: 7px 8px 0 8px;
+  padding: 8px 12px;
   border: none;
   border-radius: 8px;
   opacity: 0;
