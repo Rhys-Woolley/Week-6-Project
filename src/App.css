@@ -46,6 +46,12 @@
   display: none;
 }
 
+.basketBtnHolder {
+  display:flex;
+  height: 40px;
+  width: 200px;
+}
+
 svg {
   transform: translateY(13%);
 }

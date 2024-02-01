@@ -5,6 +5,9 @@ import './App.css'
 import BasketComponent from './components/Basket';
 import styled from 'styled-components';
 
+// For the eyecatch element around the basket.
+const pingSize = 400;
+
 class Cat {
   constructor (id, url, name, sex) {
       this.id = id;
@@ -62,7 +65,21 @@ function App() {
 
   const addToBasket = (...cats) => {
     setBasketContents([...basketContents, ...cats]);
-    document.getElementById("ping").classList.add("pinging");
+
+    const basketBtn = document.getElementById("basketBtn");
+    const ping = document.getElementById("ping");
+    console.log(basketBtn.getBoundingClientRect())
+
+    const pingLeft  = (basketBtn.getBoundingClientRect().x + basketBtn.getBoundingClientRect().width / 2) - pingSize / 2;
+    const pingTop   = (basketBtn.getBoundingClientRect().y + basketBtn.getBoundingClientRect().height / 2) - pingSize / 2;
+
+    
+    ping.style.left = pingLeft + "px";
+    ping.style.top = pingTop + "px";
+    
+    console.log(ping.style.left, pingLeft)
+    
+    ping.classList.add("pinging");
   }
 
   const showInfo = (cat) => {
@@ -77,9 +94,9 @@ function App() {
     <>
       <div id="topBar">
         <div className="basketBtnHolder">
-          <button onClick={() => {setBasketVisible(true)}}>Basket</button>
-          <Ping id="ping" onTransitionEnd={resetPing}/>
+          <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>Basket</button>
         </div>
+        <Ping id="ping" onTransitionEnd={resetPing}/>
       </div>
       <div className="catComponents">
         {catObjects.map((cat, index) => {
@@ -93,7 +110,6 @@ function App() {
 
 export default App
 
-const pingSize = 400;
 
 const Ping = styled.div`
   pointer-events: none;
@@ -102,8 +118,8 @@ const Ping = styled.div`
   border-radius: ${pingSize}px;
   background-color: grey;
   position:absolute;
-  top: ${-pingSize/2 + 20}px;
-  left: ${-pingSize/2 + 30}px;
+  top: ${-pingSize/2}px;
+  left: ${-pingSize/2}px;
   z-index: -1;
   background: radial-gradient(circle, #752c2c00 20%, #752c2c 50%, #752c2c00 100%);
   transition: scale 0.3s !important;;
