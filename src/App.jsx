@@ -3,6 +3,10 @@ import CatComponent from './components/Cat';
 import { faker } from '@faker-js/faker';
 import './App.css'
 import BasketComponent from './components/Basket';
+import styled from 'styled-components';
+
+// For the eyecatch element around the basket.
+const pingSize = 400;
 
 class Cat {
   constructor (id, url, name, sex) {
@@ -11,6 +15,8 @@ class Cat {
 
       this.name = name;
       this.sex = sex;
+
+      this.price = faker.number.int({min: 40, max: 300});
   }
 }
 
@@ -57,24 +63,48 @@ function App() {
     setCatObjects(tempList); 
   }, [rawCatData]);
 
-  const addToBasket = (...cats) => {
-    setBasketContents([...basketContents, ...cats]);
+
+  const addToBasket = (cat) => {
+    setBasketContents([...basketContents, cat]);
+
+    const basketBtn = document.getElementById("basketBtn");
+    const ping = document.getElementById("ping");
+
+    const pingLeft  = (basketBtn.getBoundingClientRect().x + basketBtn.getBoundingClientRect().width / 2) - pingSize / 2;
+    const pingTop   = (basketBtn.getBoundingClientRect().y + basketBtn.getBoundingClientRect().height / 2) - pingSize / 2;
+
+    
+    ping.style.left = pingLeft + "px";
+    ping.style.top = pingTop + "px";
+    
+    ping.classList.add("pinging");
+  }
+
+  const removeFromBasket = (cat) => {    
+    let tempList = [...basketContents].filter((item) => item.id != cat.id);
+    console.log(cat.id, tempList);
+    setBasketContents([...tempList]);
   }
 
   const showInfo = (cat) => {
     console.log(`Showing more info about ${cat.name}`);
   }
 
+  const resetPing = () => {    
+    document.getElementById("ping").classList.remove("pinging");
+  }
+
   return (
     <>
-      
-
       <div id="topBar">
-        <button onClick={() => setBasketVisible(true)}>Basket</button>
+        <div className="basketBtnHolder">
+          <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>Basket</button>
+        </div>
+        <Ping id="ping" onTransitionEnd={resetPing}/>
       </div>
       <div className="catComponents">
         {catObjects.map((cat, index) => {
-          return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo}/> 
+          return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo} removeFunc={removeFromBasket} basket={basketContents}/> 
         })}
       </div>
       <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible}/>
@@ -83,3 +113,26 @@ function App() {
 }
 
 export default App
+
+
+const Ping = styled.div`
+  pointer-events: none;
+  height:${pingSize}px;
+  width: ${pingSize}px;
+  border-radius: ${pingSize}px;
+  background-color: grey;
+  position:absolute;
+  top: ${-pingSize/2}px;
+  left: ${-pingSize/2}px;
+  z-index: -1;
+  background: radial-gradient(circle, #752c2c00 20%, #752c2c 50%, #752c2c00 100%);
+  transition: scale 0.3s !important;;
+  opacity: 0;
+  scale: 1;
+
+  &.pinging {
+    opacity: 1;
+    z-index: 5;
+    scale: 0.001;
+  }
+`

@@ -11,6 +11,13 @@
   width: 100%;
 }
 
+.flexColumn {
+  display: flex;  
+  width: 100%;
+  flex-direction: column;
+}
+
+
 .right {
   justify-content: right;
   margin-right: 12px;
@@ -44,6 +51,12 @@
 
 #basketHolder.hidden {
   display: none;
+}
+
+.basketBtnHolder {
+  display:flex;
+  height: 40px;
+  width: 200px;
 }
 
 svg {
