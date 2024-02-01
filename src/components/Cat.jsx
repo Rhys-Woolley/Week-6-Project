@@ -49,5 +49,5 @@ const CatNameTag = styled.p`
   font-size: 24pt;
   position:relative;
   margin: 8px 14px;
-  filter: drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black) drop-shadow(0 0 2px black)
+  filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 2px black)
 `
