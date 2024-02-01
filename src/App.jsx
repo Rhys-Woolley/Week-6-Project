@@ -16,7 +16,8 @@ class Cat {
 function App() {
   const [catData, setCatData] = useState([]);
   const [catList, setCatList] = useState([]);
-  const [basket, setBasket] = useState([]);
+  const [basketContents, setBasketContents] = useState([]);
+  const [basketVisible, setBasketVisible] = useState([]);
 
   useEffect(() => {
     const fetchCats = async () => {
