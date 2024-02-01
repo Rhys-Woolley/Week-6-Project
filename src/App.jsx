@@ -18,7 +18,7 @@ function App() {
   const [rawCatData, setRawCatData] = useState([]);
   const [catObjects, setCatObjects] = useState([]);
   const [basketContents, setBasketContents] = useState([]);
-  const [basketVisible, setBasketVisible] = useState([]);
+  const [basketVisible, setBasketVisible] = useState(true);
 
   useEffect(() => {
     setRawCatData([]); // Prevent loading an infinite number of cats whenever the page rerenders.
@@ -57,8 +57,16 @@ function App() {
     setCatObjects(tempList); 
   }, [rawCatData]);
 
-  const addToBasket = (cat) => {
-    console.log(`Adding ${cat.name} to basket`);
+  // Testing purposes only, remove after use
+  useEffect(() => {
+    if (catObjects.length >= 3) {
+      console.log(catObjects);
+      addToBasket(catObjects[0],catObjects[1],catObjects[2]);
+    }
+  }, [catObjects]);
+
+  const addToBasket = (...cats) => {
+    setBasketContents([...basketContents, ...cats]);
   }
 
   const showInfo = (cat) => {
@@ -67,13 +75,17 @@ function App() {
 
   return (
     <>
-      <div id="topBar"></div>
+      
+
+      <div id="topBar">
+        <button onClick={() => setBasketVisible(true)}>Basket</button>
+      </div>
       <div className="catComponents">
         {catObjects.map((cat, index) => {
           return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo}/> 
         })}
       </div>
-      <BasketComponent />
+      <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible}/>
     </>
   )
 }
