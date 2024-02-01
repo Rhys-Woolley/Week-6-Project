@@ -9,8 +9,8 @@ const CatComponent = (props) => {
       <CatPic src={props.cat.url}/>
       <CatNameTag>{props.cat.name}</CatNameTag>
       <div className="flex right">
-        <CatButton onClick={props.infoFunc}>< FaInfoCircle /></CatButton>
-        <CatButton onClick={props.addFunc}>< FaCartPlus  /></CatButton>
+        <CatButton onClick={() => props.infoFunc(props.cat)}>< FaInfoCircle /></CatButton>
+        <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton>
       </div>
     </CatPicHolder>
   )
@@ -25,7 +25,7 @@ const CatButton = styled.button`
   margin: 14px 6px;
   justify-self: right;
   font-size: 24pt;
-  padding: 7px 8px 0 8px;
+  padding: 8px 12px;
   border: none;
   border-radius: 8px;
   opacity: 0;
