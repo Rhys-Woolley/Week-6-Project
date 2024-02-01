@@ -1,4 +1,5 @@
 // import { useState, useEffect } from 'react'
+import { FaInfoCircle, FaCartPlus  } from "react-icons/fa";
 import styled from "styled-components";
 import '../App.css'
 
@@ -7,6 +8,10 @@ const CatComponent = (props) => {
     <CatPicHolder key={props.cat.id}>
       <CatPic src={props.cat.url}/>
       <CatNameTag>{props.cat.name}</CatNameTag>
+      <div className="flex right">
+        <CatButton onClick={props.infoFunc}>< FaInfoCircle /></CatButton>
+        <CatButton onClick={props.addFunc}>< FaCartPlus  /></CatButton>
+      </div>
     </CatPicHolder>
   )
 }
@@ -15,6 +20,18 @@ export default CatComponent
 
 const imageHeight = 250;
 const imageWidth = 350;
+
+const CatButton = styled.button`
+  margin: 14px 6px;
+  justify-self: right;
+  font-size: 24pt;
+  padding: 7px 8px 0 8px;
+  border: none;
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s;
+`
 
 const CatPic = styled.img`
   height: ${imageHeight}px;
@@ -40,6 +57,11 @@ const CatPicHolder = styled.div`
   &:hover img {
     scale: 1.2;
   }
+
+  &:hover button {
+    visibility: visible;
+    opacity: 1;
+  }
 `
 
 const CatNameTag = styled.p`
@@ -48,6 +70,6 @@ const CatNameTag = styled.p`
   font-weight: 400;
   font-size: 24pt;
   position:relative;
-  margin: 8px 14px;
+  margin: 16px 20px;
   filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 2px black)
 `
