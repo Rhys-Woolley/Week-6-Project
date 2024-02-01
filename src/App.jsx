@@ -18,7 +18,7 @@ function App() {
   const [rawCatData, setRawCatData] = useState([]);
   const [catObjects, setCatObjects] = useState([]);
   const [basketContents, setBasketContents] = useState([]);
-  const [basketVisible, setBasketVisible] = useState(true);
+  const [basketVisible, setBasketVisible] = useState(false);
 
   useEffect(() => {
     setRawCatData([]); // Prevent loading an infinite number of cats whenever the page rerenders.
@@ -56,14 +56,6 @@ function App() {
 
     setCatObjects(tempList); 
   }, [rawCatData]);
-
-  // Testing purposes only, remove after use
-  useEffect(() => {
-    if (catObjects.length >= 3) {
-      console.log(catObjects);
-      addToBasket(catObjects[0],catObjects[1],catObjects[2]);
-    }
-  }, [catObjects]);
 
   const addToBasket = (...cats) => {
     setBasketContents([...basketContents, ...cats]);

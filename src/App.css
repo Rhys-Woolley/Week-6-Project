@@ -18,7 +18,7 @@
 
 #basket {
   width: 500px;
-  max-width: min(90vw, 500px);
+  max-width: min(80vw, 500px);
   height: 100vh;
   background-color: white;
   position: fixed;
