@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 const BasketComponent = (props) => {
   const contents = props.contents;
+  let totalCost = 0
+  contents.map((item) => {totalCost += item.price});
 
   return (
     <>
@@ -16,6 +18,8 @@ const BasketComponent = (props) => {
         {contents.map((item, index) => {
           return <CatComponent key={index} cat={item} basketMode="true"/>
         })}
+        
+        <p>Total Cost: £{totalCost}</p>
 
       </div>
     </>
@@ -26,8 +30,11 @@ const CatComponent = (props) => {
   return (
     <BasketItem key={props.cat.id}>
       <CatPic src={props.cat.url}/>
-      <CatNameTag>{props.cat.name}</CatNameTag>
-    </BasketItem>
+      <div className="flexColumn">
+        <CatNameTag>{props.cat.name}</CatNameTag>
+        <CatNameTag>£{props.cat.price}</CatNameTag>
+      </div>
+    </BasketItem>    
   )
 }
   

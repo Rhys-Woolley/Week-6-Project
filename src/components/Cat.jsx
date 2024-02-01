@@ -1,9 +1,18 @@
 // import { useState, useEffect } from 'react'
-import { FaInfoCircle, FaCartPlus  } from "react-icons/fa";
+import { FaInfoCircle, FaCartPlus, FaCartArrowDown  } from "react-icons/fa";
 import styled from "styled-components";
 import '../App.css'
 
 const CatComponent = (props) => {
+  let inBasket = false;
+
+  props.basket.map((item) => {
+    if (item.id == props.cat.id) {
+      inBasket = true;
+      return;
+    }
+  })
+
   return (
     <CatPicHolder key={props.cat.id}>
       <CatPic src={props.cat.url}/>
@@ -12,8 +21,11 @@ const CatComponent = (props) => {
         <CatPrice>£{props.cat.price}</CatPrice>
       </div>
       <div className="flex right">
-        <CatButton onClick={() => props.infoFunc(props.cat)}>< FaInfoCircle /></CatButton>
-        <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton>
+        <CatButton onClick={() => props.infoFunc(props.cat)}>< FaInfoCircle /></CatButton> 
+
+        {!inBasket ? 
+        <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton> :
+        <CatButton onClick={() => props.removeFunc(props.cat)} style={{"background-color": "#752c2c", color:"white"}}>< FaCartArrowDown  /></CatButton>}
       </div>
     </CatPicHolder>
   )

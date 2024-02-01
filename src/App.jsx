@@ -63,12 +63,12 @@ function App() {
     setCatObjects(tempList); 
   }, [rawCatData]);
 
-  const addToBasket = (...cats) => {
-    setBasketContents([...basketContents, ...cats]);
+
+  const addToBasket = (cat) => {
+    setBasketContents([...basketContents, cat]);
 
     const basketBtn = document.getElementById("basketBtn");
     const ping = document.getElementById("ping");
-    console.log(basketBtn.getBoundingClientRect())
 
     const pingLeft  = (basketBtn.getBoundingClientRect().x + basketBtn.getBoundingClientRect().width / 2) - pingSize / 2;
     const pingTop   = (basketBtn.getBoundingClientRect().y + basketBtn.getBoundingClientRect().height / 2) - pingSize / 2;
@@ -77,9 +77,13 @@ function App() {
     ping.style.left = pingLeft + "px";
     ping.style.top = pingTop + "px";
     
-    console.log(ping.style.left, pingLeft)
-    
     ping.classList.add("pinging");
+  }
+
+  const removeFromBasket = (cat) => {    
+    let tempList = [...basketContents].filter((item) => item.id != cat.id);
+    console.log(cat.id, tempList);
+    setBasketContents([...tempList]);
   }
 
   const showInfo = (cat) => {
@@ -100,7 +104,7 @@ function App() {
       </div>
       <div className="catComponents">
         {catObjects.map((cat, index) => {
-          return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo}/> 
+          return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo} removeFunc={removeFromBasket} basket={basketContents}/> 
         })}
       </div>
       <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible}/>
