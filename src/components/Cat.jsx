@@ -8,6 +8,7 @@ const CatComponent = (props) => {
     <CatPicHolder key={props.cat.id}>
       <CatPic src={props.cat.url}/>
       <CatNameTag>{props.cat.name}</CatNameTag>
+      <CatPrice>£{props.cat.price}</CatPrice>
       <div className="flex right">
         <CatButton onClick={() => props.infoFunc(props.cat)}>< FaInfoCircle /></CatButton>
         <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton>
@@ -71,5 +72,14 @@ const CatNameTag = styled.p`
   font-size: 24pt;
   position:relative;
   margin: 16px 20px;
-  filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 2px black)
+  background-color: black;
+  padding: 4px 8px;
+  /* filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 2px black); */
+`
+
+const CatPrice = styled.p`
+  user-select: none;
+  color: white;
+  background-color: black;
+  padding: 4px 8px;
 `

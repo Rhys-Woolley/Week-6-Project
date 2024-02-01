@@ -49,3 +49,15 @@
 svg {
   transform: translateY(13%);
 }
+
+.ping {
+  height:300px;
+  width: 300px;
+  border-radius: 300px;
+  background-color: grey;
+  position:absolute;
+  top: -150px;
+  left: -150px;
+  z-index: 5;
+}
+

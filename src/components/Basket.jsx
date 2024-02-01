@@ -16,7 +16,7 @@ const BasketComponent = (props) => {
         {contents.map((item, index) => {
           return <CatComponent key={index} cat={item} basketMode="true"/>
         })}
-        
+
       </div>
     </>
   )
