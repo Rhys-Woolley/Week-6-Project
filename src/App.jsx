@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import CatComponent from './components/Cat';
 import { faker } from '@faker-js/faker';
 import './App.css'
+import BasketComponent from './components/Basket';
 
 class Cat {
   constructor (id, url, name, sex) {
@@ -72,7 +73,7 @@ function App() {
           return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo}/> 
         })}
       </div>
-      <div id="basket"></div>
+      <BasketComponent />
     </>
   )
 }
