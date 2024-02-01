@@ -105,7 +105,7 @@ const Ping = styled.div`
   top: ${-pingSize/2 + 20}px;
   left: ${-pingSize/2 + 30}px;
   z-index: -1;
-  background: radial-gradient(circle, rgba(179,242,82,0) 20%, rgba(179,242,82,1) 80%, rgba(179,242,82,0) 100%);
+  background: radial-gradient(circle, #752c2c00 20%, #752c2c 50%, #752c2c00 100%);
   transition: scale 0.3s !important;;
   opacity: 0;  
   scale: 1;

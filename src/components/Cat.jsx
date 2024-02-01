@@ -32,6 +32,7 @@ const CatButton = styled.button`
   opacity: 0;
   visibility: hidden;
   transition: 0.2s;
+  align-self: end;
 `
 
 const CatPic = styled.img`
@@ -53,7 +54,6 @@ const CatPicHolder = styled.div`
   border-radius: 5px;
   margin: 10px;
   display: flex;
-  align-items: end;
 
   &:hover img {
     scale: 1.2;
@@ -67,19 +67,22 @@ const CatPicHolder = styled.div`
 
 const CatNameTag = styled.p`
   user-select: none;
-  color: white;  
+  color: black;  
   font-weight: 400;
   font-size: 24pt;
   position:relative;
-  margin: 16px 20px;
-  background-color: black;
-  padding: 4px 8px;
+  margin: 16px 0;
+  background-color: white;
+  padding: 4px 8px;  
+  align-self: baseline;
   /* filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 2px black); */
 `
 
 const CatPrice = styled.p`
+  margin: 16px 0;
   user-select: none;
   color: white;
-  background-color: black;
+  background-color: #752c2c;
   padding: 4px 8px;
+  align-self: start;
 `
