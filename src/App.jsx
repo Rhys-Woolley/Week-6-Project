@@ -16,7 +16,8 @@ class Cat {
 function App() {
   const [rawCatData, setRawCatData] = useState([]);
   const [catObjects, setCatObjects] = useState([]);
-  const [basket, setBasket] = useState([]);
+  const [basketContents, setBasketContents] = useState([]);
+  const [basketVisible, setBasketVisible] = useState([]);
 
   useEffect(() => {
     setRawCatData([]); // Prevent loading an infinite number of cats whenever the page rerenders.
