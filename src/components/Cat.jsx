@@ -9,8 +9,8 @@ const CatComponent = (props) => {
       <CatPic src={props.cat.url}/>
       <CatNameTag>{props.cat.name}</CatNameTag>
       <div className="flex right">
-        <CatButton onClick={props.infoFunc}>< FaInfoCircle /></CatButton>
-        <CatButton onClick={props.addFunc}>< FaCartPlus  /></CatButton>
+        <CatButton onClick={() => props.infoFunc(props.cat)}>< FaInfoCircle /></CatButton>
+        <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton>
       </div>
     </CatPicHolder>
   )

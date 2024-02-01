@@ -57,7 +57,11 @@ function App() {
   }, [rawCatData]);
 
   const addToBasket = (cat) => {
+    console.log(`Adding ${cat.name} to basket`);
+  }
 
+  const showInfo = (cat) => {
+    console.log(`Showing more info about ${cat.name}`);
   }
 
   return (
@@ -65,7 +69,7 @@ function App() {
       <div id="topBar"></div>
       <div className="catComponents">
         {catObjects.map((cat, index) => {
-          return <CatComponent key={index} cat={cat} addFunc={addToBasket}/> 
+          return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo}/> 
         })}
       </div>
       <div id="basket"></div>
