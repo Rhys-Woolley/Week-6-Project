@@ -20,15 +20,19 @@ class Cat {
       this.adjective = faker.word.adjective();
       this.noun = faker.word.noun();
 
+      // Generates random descriptions for each cat using faker and some random phrases.
       let flourishes = ["nothing more than", "anything to do with", "all things", "to see", "whatever seems like"]
       let flourish = flourishes[Math.floor(Math.random()*flourishes.length )];
 
       let moods = ["likes", "loves", "loathes", "enjoys", "is indifferent to", "wants", "is scared of", "dreads", "fancies", "rejects", "relishes in", "demands"]
       let mood = moods[Math.floor(Math.random()*moods.length)];
 
+      // Switches between "a" and "an" as appropriate.
       let starterWord = ["a","e","i","o","u"].includes(this.adjective[0]) ? "An" : "A";
 
       this.description = `${starterWord} ${this.adjective} cat who ${mood} ${flourish} ${this.noun}.`
+
+      // Delete this after testing.
       console.log(this.description);
   }
 }
@@ -40,7 +44,7 @@ function App() {
   const [basketVisible, setBasketVisible] = useState(false);
 
   useEffect(() => {
-    setRawCatData([]); // Prevent loading an infinite number of cats whenever the page rerenders.
+    setRawCatData([]); // Prevent an infinite number of cats loading whenever the page rerenders.
 
     const fetchCats = async () => {
       const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
@@ -102,11 +106,12 @@ function App() {
   }
 
 
+  // Display info modular.
   const showInfo = (cat) => {
     console.log(`Showing more info about ${cat.name}`);
   }
 
-
+  // Resets the eyecatch once it's finished playing.
   const resetPing = () => {    
     document.getElementById("ping").classList.remove("pinging");
   }
@@ -132,7 +137,7 @@ function App() {
 
 export default App
 
-
+// Eyecatch element.
 const Ping = styled.div`
   pointer-events: none;
   height:${pingSize}px;
