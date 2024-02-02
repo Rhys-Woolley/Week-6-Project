@@ -1,10 +1,13 @@
+body {
+  margin-top: 130px;
+}
+
 .catComponents {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  margin-top: 120px;
 }
 
 .flex {
@@ -19,7 +22,6 @@
   flex-direction: column;
 }
 
-
 .right {
   justify-content: right;
   margin-right: 12px;
@@ -28,6 +30,26 @@
 .end {
   align-self: end;
   margin-top: auto;
+}
+
+#logo {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  margin-right: 60px;
+}
+
+#banner a {
+  height:fit-content;
+  color: white;
+  text-decoration: none;
+  font-size: 18pt;
+  font-weight: bold;
+  white-space: nowrap;
+  align-self: center;
+  margin-right:20px;
 }
 
 #basket {
@@ -79,7 +101,9 @@
   height:fit-content;
   border: none;
   margin: 20px;
-  padding: 5px 20px ;
+  padding: 5px 20px;
+  align-self: center;
+  border-radius: 50px;
 }
 
 .basketBtnHolder {
@@ -143,13 +167,17 @@ svg {
 }
 #header {
   box-sizing: border-box;
-  margin-left: 20px;
+  margin: 0;
 }
 
 #subtitle {
   box-sizing: border-box;
-  margin-left: 40px;
+  margin: 0;
   height:fit-content;
   align-self: center;
   width:100%;
+}
+
+.textContainer {
+  text-align: center;
 }

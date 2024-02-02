@@ -183,7 +183,7 @@ function App() {
             <h3 id="subtitle">Get kittied out</h3>
           </div>
           <Link to="/">Home</Link>
-          <Link to="/checkout">Checkout</Link>
+          <Link to="/about-us">About Us</Link>
           <div className="basketBtnHolder">
             <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>{basketContents.length} <FaCartShopping /></button>
           </div>
@@ -192,7 +192,7 @@ function App() {
 
         <Routes>
           <Route path = "/" element={<Home content={homeContent}/>}/>
-          <Route path = "/checkout" element={<About />}/>
+          <Route path = "/about-us" element={<About />}/>
         </Routes>
       </HashRouter>
     </>
