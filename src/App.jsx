@@ -14,25 +14,49 @@ class Cat {
       this.url = url;
 
       this.name = name;
-      this.sex = sex;
+      this.sex = null;
+
+      let random = Math.random()
+      switch (true) {
+        case (random < 0.48):
+          this.sex = "F";
+          break;
+        case (random < 0.96):
+          this.sex = "M";
+          break;
+        default:
+          this.sex = "Non-binary"
+      }
 
       this.price = faker.number.int({min: 40, max: 300});
       this.adjective = faker.word.adjective();
       this.noun = faker.word.noun();
 
+      // Chooses between "a" or "an" as appropriate.
+      let starterWord = ["a","e","i","o","u"].includes(this.adjective[0]) ? "An" : "A";
+
+      let pronoun = null;
+
+      switch (this.sex) {
+        case "Female": 
+          pronoun = "her";
+          break;
+        case "Male": 
+          pronoun = "her";
+          break;
+        default:
+          pronoun = "their";
+      }
+
       // Generates random descriptions for each cat using faker and some random phrases.
-      let flourishes = ["nothing more than", "anything to do with", "all things", "to see", "whatever seems like"]
+      let flourishes = ["nothing less than", "anything to do with", "all things", "seeing", "hearing", "being surrounded by", "whatever seems like", "the opposite of", "the absence of", "any", "things akin to", "your", "my", "anybody's", pronoun]
       let flourish = flourishes[Math.floor(Math.random()*flourishes.length )];
 
-      let moods = ["likes", "loves", "loathes", "enjoys", "is indifferent to", "wants", "is scared of", "dreads", "fancies", "rejects", "relishes in", "demands"]
+      let moods = ["likes", "loves", "loathes", "enjoys", "is indifferent to", "wants", "is scared of", "dreads", "fancies", "rejects", "relishes in", "demands", "opposes", "respects", "dreams about", "ignores", "freaks out at", "can't stay away from", "cannot comprehend", "actually controls", "believes in", "would probably like"]
       let mood = moods[Math.floor(Math.random()*moods.length)];
-
-      // Switches between "a" and "an" as appropriate.
-      let starterWord = ["a","e","i","o","u"].includes(this.adjective[0]) ? "An" : "A";
 
       this.description = `${starterWord} ${this.adjective} cat who ${mood} ${flourish} ${this.noun}.`
 
-      // Delete this after testing.
       console.log(this.description);
   }
 }
