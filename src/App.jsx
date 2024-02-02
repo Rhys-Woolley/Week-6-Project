@@ -8,7 +8,7 @@ import CatInfoComponent from './components/CatInfo';
 import styled from 'styled-components';
 import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
-import About from './pages/checkout';
+import About from './pages/about-us';
 
 // For the eyecatch element around the basket.
 const pingSize = 400;
