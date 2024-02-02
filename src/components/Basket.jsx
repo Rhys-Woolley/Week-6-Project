@@ -9,9 +9,12 @@ const BasketComponent = (props) => {
 
   return (
     <>
+      <div className={"basketBG " + (props.visible ? "" : "hidden")}
+            onClick={() => props.setVisible(false)}></div>
+
       <div id="basketHolder" 
-          className={props.visible ? "" : "hidden"}
-          onClick={() => props.setVisible(false)}></div>
+          className={"basketBG " + (props.visible ? "" : "hidden")}
+          onClick={() => props.setVisible(false)}></div>      
 
       <div id="basket" 
           className={props.visible ? "" : "hidden"}>
