@@ -17,6 +17,19 @@ class Cat {
       this.sex = sex;
 
       this.price = faker.number.int({min: 40, max: 300});
+      this.adjective = faker.word.adjective();
+      this.noun = faker.word.noun();
+
+      let flourishes = ["nothing more than", "anything to do with", "all things", "to see", "whatever seems like"]
+      let flourish = flourishes[Math.floor(Math.random()*flourishes.length )];
+
+      let moods = ["likes", "loves", "loathes", "enjoys", "is indifferent to", "wants", "is scared of", "dreads", "fancies", "rejects", "relishes in", "demands"]
+      let mood = moods[Math.floor(Math.random()*moods.length)];
+
+      let starterWord = ["a","e","i","o","u"].includes(this.adjective[0]) ? "An" : "A";
+
+      this.description = `${starterWord} ${this.adjective} cat who ${mood} ${flourish} ${this.noun}.`
+      console.log(this.description);
   }
 }
 
@@ -51,6 +64,7 @@ function App() {
     fetchCats();
   }, []);
 
+
   useEffect(() => {
     const tempList = [];
 
@@ -80,19 +94,23 @@ function App() {
     ping.classList.add("pinging");
   }
 
+
   const removeFromBasket = (cat) => {    
     let tempList = [...basketContents].filter((item) => item.id != cat.id);
     console.log(cat.id, tempList);
     setBasketContents([...tempList]);
   }
 
+
   const showInfo = (cat) => {
     console.log(`Showing more info about ${cat.name}`);
   }
 
+
   const resetPing = () => {    
     document.getElementById("ping").classList.remove("pinging");
   }
+  
 
   return (
     <>
