@@ -1,4 +1,5 @@
 import { FaShoppingCart } from "react-icons/fa"
+import { ImCross } from "react-icons/im";
 import styled from "styled-components";
 
 const BasketComponent = (props) => {
@@ -8,15 +9,18 @@ const BasketComponent = (props) => {
 
   return (
     <>
+      <div className={"basketBG " + (props.visible ? "" : "hidden")}
+            onClick={() => props.setVisible(false)}></div>
+
       <div id="basketHolder" 
-          className={props.visible ? "" : "hidden"}
-          onClick={() => props.setVisible(false)}></div>
+          className={"basketBG " + (props.visible ? "" : "hidden")}
+          onClick={() => props.setVisible(false)}></div>      
 
       <div id="basket" 
           className={props.visible ? "" : "hidden"}>
         <h1>Basket < FaShoppingCart /></h1>        
         {contents.map((item, index) => {
-          return <CatComponent key={index} cat={item} basketMode="true"/>
+          return <CatComponent key={index} cat={item} basketMode="true" removeFunc={props.removeFunc}/>
         })}
         
         <p>Total Cost: £{totalCost}</p>
@@ -29,7 +33,10 @@ const BasketComponent = (props) => {
 const CatComponent = (props) => {
   return (
     <BasketItem key={props.cat.id}>
-      <CatPic src={props.cat.url}/>
+      <CatButton onClick={() => props.removeFunc(props.cat)}>< ImCross /></CatButton>
+      <div className="basketImageHolder">
+        <CatPic src={props.cat.url}/>
+      </div>
       <div className="flexColumn">
         <CatNameTag>{props.cat.name}</CatNameTag>
         <CatNameTag>£{props.cat.price}</CatNameTag>
@@ -50,8 +57,6 @@ const CatButton = styled.button`
   padding: 8px 12px;
   border: none;
   border-radius: 8px;
-  opacity: 0;
-  visibility: hidden;
   transition: 0.2s;
 `
 
