@@ -25,7 +25,7 @@ const CatComponent = (props) => {
 
         {!inBasket ? 
         <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton> :
-        <CatButton onClick={() => props.removeFunc(props.cat)} style={{"background-color": "#752c2c", color:"white"}}>< FaCartArrowDown  /></CatButton>}
+        <CatButton onClick={() => props.removeFunc(props.cat)} style={{"backgroundColor": "#752c2c", color:"white"}}>< FaCartArrowDown  /></CatButton>}
       </div>
     </CatPicHolder>
   )
