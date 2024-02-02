@@ -154,10 +154,14 @@ function App() {
   return (
     <>
       <div id="topBar">
-        <div className="basketBtnHolder">
+      <div id="banner">
+    <h1 id="header">CATalogue</h1>
+    <h3 id="subtitle">Get kittied out</h3>
+    <div className="basketBtnHolder">
           <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>{basketContents.length} <FaCartShopping /></button>
         </div>
         <Ping id="ping" onTransitionEnd={resetPing}/>
+       </div>
       </div>
       <div className="catComponents">
         {catObjects.map((cat, index) => {

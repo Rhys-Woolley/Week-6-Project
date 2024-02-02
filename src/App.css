@@ -126,3 +126,18 @@
 svg {
   transform: translateY(13%);
 }
+
+#banner {
+  box-sizing: border-box;
+  border: hidden;
+  background-color: lightgray;
+}
+#header {
+  box-sizing: border-box;
+  margin-left: 20px;
+}
+
+#subtitle {
+  box-sizing: border-box;
+  margin-left: 20px;
+}
