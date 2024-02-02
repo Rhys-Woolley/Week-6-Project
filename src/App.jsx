@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { FaCartShopping } from "react-icons/fa6";
 import CatComponent from './components/Cat';
 import { faker } from '@faker-js/faker';
 import './App.css'
@@ -130,7 +131,7 @@ function App() {
     <>
       <div id="topBar">
         <div className="basketBtnHolder">
-          <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>Basket</button>
+          <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>{basketContents.length} <FaCartShopping /></button>
         </div>
         <Ping id="ping" onTransitionEnd={resetPing}/>
       </div>
@@ -140,7 +141,8 @@ function App() {
         })}
       </div>
       
-      {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} visible={infoboxVisible} setVisible={setinfoboxVisible}/>}
+      {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} removeFunc={removeFromBasket}
+                          visible={infoboxVisible} setVisible={setinfoboxVisible} basket={basketContents}/>}
       <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
     </>
   )

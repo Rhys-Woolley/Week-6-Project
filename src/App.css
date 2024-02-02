@@ -72,10 +72,19 @@
   width: 100px;
 }
 
+#basketBtn {  
+  font-size: 26pt;
+  height:fit-content;
+  border: none;
+  margin: 20px;
+  padding: 5px 20px ;
+}
+
 .basketBtnHolder {
   display:flex;
-  height: 40px;
-  width: 200px;
+  width: calc(100% - 40px);
+  justify-content: right;
+  padding-right: 40px;
 }
 
 .infoBox {
