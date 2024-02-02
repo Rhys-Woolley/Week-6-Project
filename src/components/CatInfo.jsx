@@ -1,4 +1,4 @@
-import { FaCartPlus, FaCartArrowDown  } from "react-icons/fa";
+import { FaCartPlus, FaCartArrowDown, FaArrowCircleRight, FaArrowCircleLeft  } from "react-icons/fa";
 import styled from "styled-components";
 
 const CatInfoComponent = (props) => {
@@ -24,8 +24,9 @@ const CatInfoComponent = (props) => {
           onClick={() => props.setVisible(false)}></div>  
 
       <div className={"infoBox " + (props.visible ? "" : "hidden")}>
-        
+
         <div className="innerInfoBox flex">
+        <CatButton><FaArrowCircleLeft onClick={() => props.changeCat()}/></CatButton>        
           <img src={cat.url} />
           <div className="catInfo">
             <h1>{cat.name}</h1>
@@ -35,6 +36,8 @@ const CatInfoComponent = (props) => {
               <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton> :
               <CatButton onClick={() => props.removeFunc(props.cat)} style={{"backgroundColor": "#752c2c", color:"white"}}>< FaCartArrowDown  /></CatButton>}
           </div>
+          
+        <CatButton ><FaArrowCircleRight onClick={() => props.changeCat()}/></CatButton>
         </div>
       </div>
     </>
@@ -51,4 +54,5 @@ const CatButton = styled.button`
   border: none;
   border-radius: 8px;
   transition: 0.2s;
+  z-index: 50;
 `
