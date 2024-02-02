@@ -6,6 +6,9 @@ import './App.css'
 import BasketComponent from './components/Basket';
 import CatInfoComponent from './components/CatInfo';
 import styled from 'styled-components';
+import { HashRouter, Link, Route, Routes } from 'react-router-dom';
+import Home from './pages/home';
+import About from './pages/checkout';
 
 // For the eyecatch element around the basket.
 const pingSize = 400;
@@ -153,33 +156,52 @@ function App() {
   const selectNext = (dir) => {
 
   }
-  
+
+  const homeContent = () => {
+    return (
+      <>
+        <div className="catComponents">
+          {catObjects.map((cat, index) => {
+            return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo} removeFunc={removeFromBasket} basket={basketContents}/> 
+          })}
+        </div>
+        
+        {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} removeFunc={removeFromBasket}
+                            visible={infoboxVisible} setVisible={setinfoboxVisible} basket={basketContents}
+                            changeCat={selectNext}/>}
+        <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
+      </>
+    )
+  }
 
   return (
     <>
-      <div id="banner">
-        <h1 id="header">CATalogue</h1>
-        <h3 id="subtitle">Get kittied out</h3>
-        <div className="basketBtnHolder">
-          <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>{basketContents.length} <FaCartShopping /></button>
+      <HashRouter basename="">
+        <div id="banner">
+          <div id="logo">
+            <h1 id="header">CATalogue</h1>
+            <h3 id="subtitle">Get kittied out</h3>
+          </div>
+          <Link to="/">Home</Link>
+          <Link to="/checkout">Checkout</Link>
+          <div className="basketBtnHolder">
+            <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>{basketContents.length} <FaCartShopping /></button>
+          </div>
+          <Ping id="ping" onTransitionEnd={resetPing}/>
         </div>
-        <Ping id="ping" onTransitionEnd={resetPing}/>
-      </div>
-      <div className="catComponents">
-        {catObjects.map((cat, index) => {
-          return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo} removeFunc={removeFromBasket} basket={basketContents}/> 
-        })}
-      </div>
-      
-      {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} removeFunc={removeFromBasket}
-                          visible={infoboxVisible} setVisible={setinfoboxVisible} basket={basketContents}
-                          changeCat={selectNext}/>}
-      <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
+
+        <Routes>
+          <Route path = "/" element={<Home content={homeContent}/>}/>
+          <Route path = "/checkout" element={<About />}/>
+        </Routes>
+      </HashRouter>
     </>
   )
 }
 
 export default App
+
+
 
 // Eyecatch element.
 const Ping = styled.div`
