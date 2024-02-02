@@ -20,12 +20,12 @@ const CatComponent = (props) => {
         <CatNameTag>{props.cat.name}</CatNameTag>
         <CatPrice>£{props.cat.price}</CatPrice>
       </div>
-      <div className="flex right">
+      <div className="flex right end">
         <CatButton onClick={() => props.infoFunc(props.cat)}>< FaInfoCircle /></CatButton> 
 
         {!inBasket ? 
         <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton> :
-        <CatButton onClick={() => props.removeFunc(props.cat)} style={{"background-color": "#752c2c", color:"white"}}>< FaCartArrowDown  /></CatButton>}
+        <CatButton onClick={() => props.removeFunc(props.cat)} style={{"backgroundColor": "#752c2c", color:"white"}}>< FaCartArrowDown  /></CatButton>}
       </div>
     </CatPicHolder>
   )
@@ -68,6 +68,7 @@ const CatPicHolder = styled.div`
   border-radius: 5px;
   margin: 10px;
   display: flex;
+  flex-direction: column;
 
   &:hover img {
     scale: 1.2;

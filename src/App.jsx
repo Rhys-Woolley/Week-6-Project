@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { FaCartShopping } from "react-icons/fa6";
 import CatComponent from './components/Cat';
 import { faker } from '@faker-js/faker';
 import './App.css'
 import BasketComponent from './components/Basket';
+import CatInfoComponent from './components/CatInfo';
 import styled from 'styled-components';
 
 // For the eyecatch element around the basket.
@@ -14,9 +16,50 @@ class Cat {
       this.url = url;
 
       this.name = name;
-      this.sex = sex;
+      this.sex = null;
+
+      let random = Math.random()
+      switch (true) {
+        case (random < 0.48):
+          this.sex = "F";
+          break;
+        case (random < 0.96):
+          this.sex = "M";
+          break;
+        default:
+          this.sex = "Non-binary"
+      }
 
       this.price = faker.number.int({min: 40, max: 300});
+      this.adjective = faker.word.adjective();
+      this.noun = faker.word.noun();
+
+      // Chooses between "a" or "an" as appropriate.
+      let starterWord = ["a","e","i","o","u"].includes(this.adjective[0]) ? "An" : "A";
+
+      let pronoun = null;
+
+      switch (this.sex) {
+        case "Female": 
+          pronoun = "her";
+          break;
+        case "Male": 
+          pronoun = "her";
+          break;
+        default:
+          pronoun = "their";
+      }
+
+      // Generates random descriptions for each cat using faker and some random phrases.
+      let flourishes = ["nothing less than", "anything to do with", "all things", "seeing", "hearing", "being surrounded by", "whatever seems like", "the opposite of", "the absence of", "any", "things akin to", "your", "my", "anybody's", pronoun]
+      let flourish = flourishes[Math.floor(Math.random()*flourishes.length )];
+
+      let moods = ["likes", "loves", "loathes", "enjoys", "is indifferent to", "wants", "is scared of", "dreads", "fancies", "rejects", "relishes in", "demands", "opposes", "respects", "dreams about", "ignores", "freaks out at", "can't stay away from", "cannot comprehend", "actually controls", "believes in", "would probably like"]
+      let mood = moods[Math.floor(Math.random()*moods.length)];
+
+      this.description = `${starterWord} ${this.adjective} cat who ${mood} ${flourish} ${this.noun}.`
+
+      console.log(this.description);
   }
 }
 
@@ -25,9 +68,11 @@ function App() {
   const [catObjects, setCatObjects] = useState([]);
   const [basketContents, setBasketContents] = useState([]);
   const [basketVisible, setBasketVisible] = useState(false);
+  const [infoboxObject, setInfoboxObject] = useState(null);
+  const [infoboxVisible, setinfoboxVisible] = useState(false);
 
   useEffect(() => {
-    setRawCatData([]); // Prevent loading an infinite number of cats whenever the page rerenders.
+    setRawCatData([]); // Prevent an infinite number of cats loading whenever the page rerenders.
 
     const fetchCats = async () => {
       const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
@@ -51,6 +96,7 @@ function App() {
     fetchCats();
   }, []);
 
+
   useEffect(() => {
     const tempList = [];
 
@@ -62,6 +108,11 @@ function App() {
 
     setCatObjects(tempList); 
   }, [rawCatData]);
+
+  // useEffect(() => {
+  //   setinfoboxVisible(true);
+  //   console.log(infoboxObject);
+  // }, [infoboxObject]);
 
 
   const addToBasket = (cat) => {
@@ -80,25 +131,31 @@ function App() {
     ping.classList.add("pinging");
   }
 
+
   const removeFromBasket = (cat) => {    
     let tempList = [...basketContents].filter((item) => item.id != cat.id);
     console.log(cat.id, tempList);
     setBasketContents([...tempList]);
   }
 
+
+  // Display info modular.
   const showInfo = (cat) => {
-    console.log(`Showing more info about ${cat.name}`);
+    setInfoboxObject(cat);
+    setinfoboxVisible(true);
   }
 
+  // Resets the eyecatch once it's finished playing.
   const resetPing = () => {    
     document.getElementById("ping").classList.remove("pinging");
   }
+  
 
   return (
     <>
       <div id="topBar">
         <div className="basketBtnHolder">
-          <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>Basket</button>
+          <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>{basketContents.length} <FaCartShopping /></button>
         </div>
         <Ping id="ping" onTransitionEnd={resetPing}/>
       </div>
@@ -107,14 +164,17 @@ function App() {
           return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo} removeFunc={removeFromBasket} basket={basketContents}/> 
         })}
       </div>
-      <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible}/>
+      
+      {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} removeFunc={removeFromBasket}
+                          visible={infoboxVisible} setVisible={setinfoboxVisible} basket={basketContents}/>}
+      <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
     </>
   )
 }
 
 export default App
 
-
+// Eyecatch element.
 const Ping = styled.div`
   pointer-events: none;
   height:${pingSize}px;
