@@ -3,6 +3,7 @@ import CatComponent from './components/Cat';
 import { faker } from '@faker-js/faker';
 import './App.css'
 import BasketComponent from './components/Basket';
+import CatInfoComponent from './components/CatInfo';
 import styled from 'styled-components';
 
 // For the eyecatch element around the basket.
@@ -42,6 +43,8 @@ function App() {
   const [catObjects, setCatObjects] = useState([]);
   const [basketContents, setBasketContents] = useState([]);
   const [basketVisible, setBasketVisible] = useState(false);
+  const [infoboxObject, setInfoboxObject] = useState(null);
+  const [infoboxVisible, setinfoboxVisible] = useState(false);
 
   useEffect(() => {
     setRawCatData([]); // Prevent an infinite number of cats loading whenever the page rerenders.
@@ -81,6 +84,11 @@ function App() {
     setCatObjects(tempList); 
   }, [rawCatData]);
 
+  // useEffect(() => {
+  //   setinfoboxVisible(true);
+  //   console.log(infoboxObject);
+  // }, [infoboxObject]);
+
 
   const addToBasket = (cat) => {
     setBasketContents([...basketContents, cat]);
@@ -108,7 +116,8 @@ function App() {
 
   // Display info modular.
   const showInfo = (cat) => {
-    console.log(`Showing more info about ${cat.name}`);
+    setInfoboxObject(cat);
+    setinfoboxVisible(true);
   }
 
   // Resets the eyecatch once it's finished playing.
@@ -130,6 +139,8 @@ function App() {
           return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo} removeFunc={removeFromBasket} basket={basketContents}/> 
         })}
       </div>
+      
+      {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} visible={infoboxVisible} setVisible={setinfoboxVisible}/>}
       <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
     </>
   )
