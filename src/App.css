@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  margin-top: 120px;
 }
 
 .flex {
@@ -39,7 +40,8 @@
   top: 0;
   box-shadow: -3px 0 30px rgba(0,0,0,0.8);
   padding: 0 20px;
-  transition: right 0.5s cubic-bezier(.76,-0.51,.11,1.34)
+  transition: right 0.5s cubic-bezier(.76,-0.51,.11,1.34);
+  z-index: 100;
 }
 
 #basket.hidden {
@@ -110,7 +112,7 @@
   background-color: white;
   padding: 40px;
   border-radius: 20px;
-  z-index: 1;
+  z-index: 10;
 }
 
 .infoBox img {
@@ -130,7 +132,14 @@ svg {
 #banner {
   box-sizing: border-box;
   border: hidden;
-  background-color: lightgray;
+  background-color: #752c2c;
+  display:flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  color: white;
 }
 #header {
   box-sizing: border-box;
@@ -139,5 +148,8 @@ svg {
 
 #subtitle {
   box-sizing: border-box;
-  margin-left: 20px;
+  margin-left: 40px;
+  height:fit-content;
+  align-self: center;
+  width:100%;
 }

@@ -149,19 +149,21 @@ function App() {
   const resetPing = () => {    
     document.getElementById("ping").classList.remove("pinging");
   }
+
+  const selectNext = (dir) => {
+
+  }
   
 
   return (
     <>
-      <div id="topBar">
       <div id="banner">
-    <h1 id="header">CATalogue</h1>
-    <h3 id="subtitle">Get kittied out</h3>
-    <div className="basketBtnHolder">
+        <h1 id="header">CATalogue</h1>
+        <h3 id="subtitle">Get kittied out</h3>
+        <div className="basketBtnHolder">
           <button id="basketBtn" onClick={() => {setBasketVisible(true)}}>{basketContents.length} <FaCartShopping /></button>
         </div>
         <Ping id="ping" onTransitionEnd={resetPing}/>
-       </div>
       </div>
       <div className="catComponents">
         {catObjects.map((cat, index) => {
@@ -170,7 +172,8 @@ function App() {
       </div>
       
       {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} removeFunc={removeFromBasket}
-                          visible={infoboxVisible} setVisible={setinfoboxVisible} basket={basketContents}/>}
+                          visible={infoboxVisible} setVisible={setinfoboxVisible} basket={basketContents}
+                          changeCat={selectNext}/>}
       <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
     </>
   )
