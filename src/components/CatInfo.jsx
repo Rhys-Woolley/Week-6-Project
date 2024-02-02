@@ -7,8 +7,7 @@ const CatInfoComponent = (props) => {
 
   if (cat == null) return;
 
-  props.basket.map((item) => {    
-    console.log(item.id, cat.id);
+  props.basket.map((item) => {
     if (item.id == cat.id) {
       inBasket = true;
       return;

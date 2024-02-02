@@ -61,8 +61,6 @@ class Cat {
       let mood = moods[Math.floor(Math.random()*moods.length)];
 
       this.description = `${starterWord} ${this.adjective} cat who ${mood} ${flourish} ${this.noun}.`
-
-      console.log(this.description);
   }
 }
 
@@ -87,7 +85,6 @@ function App() {
       // Filters out any gifs.
       const tempData = [...data, ...data2].filter((item) => {
         if (!item.url.endsWith(".gif")) return item;
-        else console.log("removed", item.url);
       });
 
       // Only display the first 15. Unless there are more than 5 gifs across both requests
@@ -112,12 +109,6 @@ function App() {
     setCatObjects(tempList); 
   }, [rawCatData]);
 
-  // useEffect(() => {
-  //   setinfoboxVisible(true);
-  //   console.log(infoboxObject);
-  // }, [infoboxObject]);
-
-
   const addToBasket = (cat) => {
     setBasketContents([...basketContents, cat]);
 
@@ -137,7 +128,6 @@ function App() {
 
   const removeFromBasket = (cat) => {    
     let tempList = [...basketContents].filter((item) => item.id != cat.id);
-    console.log(cat.id, tempList);
     setBasketContents([...tempList]);
   }
 
