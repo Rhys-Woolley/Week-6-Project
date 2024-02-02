@@ -130,7 +130,7 @@ function App() {
           return <CatComponent key={index} cat={cat} addFunc={addToBasket} infoFunc={showInfo} removeFunc={removeFromBasket} basket={basketContents}/> 
         })}
       </div>
-      <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible}/>
+      <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
     </>
   )
 }
