@@ -21,7 +21,7 @@ const CatComponent = (props) => {
         <CatPrice>£{props.cat.price}</CatPrice>
       </div>
       <div className="flex right end">
-        <CatButton onClick={() => props.infoFunc(props.cat)}>< FaInfoCircle /></CatButton> 
+        <CatButton onClick={() => props.infoFunc(props.cat, true)}>< FaInfoCircle /></CatButton> 
 
         {!inBasket ? 
         <CatButton onClick={() => props.addFunc(props.cat)}>< FaCartPlus  /></CatButton> :

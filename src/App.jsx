@@ -135,7 +135,10 @@ function App() {
 
 
   // Display info modular.
-  const showInfo = (cat) => {
+  const showInfo = (cat, selectedFromHomepage) => {
+    // Stores the index of the selected cat for use by the selectNext() function.
+    setSelectedCatIndex(catObjects.findIndex((item) => item == cat));
+
     setInfoboxObject(cat);
     setinfoboxVisible(true);
   }
@@ -145,8 +148,16 @@ function App() {
     document.getElementById("ping").classList.remove("pinging");
   }
 
+  // Handles the prev/next buttons in the cat infoboxes.
   const selectNext = (dir) => {
+    let index = null;
 
+    if (selectedCatIndex + dir >= catObjects.length) index = 0;
+    else if (selectedCatIndex + dir < 0) index = catObjects.length - 1;
+    else index = selectedCatIndex + dir;
+
+    setSelectedCatIndex(index);
+    showInfo(catObjects[index]);
   }
 
   const homeContent = () => {

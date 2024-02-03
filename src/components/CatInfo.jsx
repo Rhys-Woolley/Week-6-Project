@@ -25,7 +25,7 @@ const CatInfoComponent = (props) => {
       <div className={"infoBox " + (props.visible ? "" : "hidden")}>
 
         <div className="innerInfoBox flex">
-        <CatButton><FaArrowCircleLeft onClick={() => props.changeCat()}/></CatButton>        
+        <CatButton onClick={() => props.changeCat(-1)}><FaArrowCircleLeft /></CatButton>        
           <img src={cat.url} />
           <div className="catInfo">
             <h1>{cat.name}</h1>
@@ -36,7 +36,7 @@ const CatInfoComponent = (props) => {
               <CatButton onClick={() => props.removeFunc(props.cat)} style={{"backgroundColor": "#752c2c", color:"white"}}>< FaCartArrowDown  /></CatButton>}
           </div>
           
-        <CatButton ><FaArrowCircleRight onClick={() => props.changeCat()}/></CatButton>
+        <CatButton onClick={() => props.changeCat(1)}><FaArrowCircleRight /></CatButton>
         </div>
       </div>
     </>
