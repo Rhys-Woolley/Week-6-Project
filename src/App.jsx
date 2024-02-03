@@ -54,10 +54,10 @@ class Cat {
       }
 
       // Generates random descriptions for each cat using faker and some random phrases.
-      let flourishes = ["nothing less than", "anything to do with", "all things", "seeing", "hearing", "being surrounded by", "whatever seems like", "the opposite of", "the absence of", "any", "things akin to", "your", "my", "anybody's", pronoun]
+      let flourishes = ["anything to do with", "all things", "whatever seems like", "the concept of", "the sound of", "any", "your", "my", "anybody's", pronoun, "anything but"]
       let flourish = flourishes[Math.floor(Math.random()*flourishes.length )];
 
-      let moods = ["likes", "loves", "loathes", "enjoys", "is indifferent to", "wants", "is scared of", "dreads", "fancies", "rejects", "relishes in", "demands", "opposes", "respects", "dreams about", "ignores", "freaks out at", "can't stay away from", "cannot comprehend", "actually controls", "believes in", "would probably like"]
+      let moods = ["likes", "loves", "enjoys", "is indifferent to", "wants", "is scared of", "dreads", "fancies", "rejects", "demands", "respects", "dreams about", "ignores", "freaks out at", "can't stay away from", "doesn't understand", "is all about", "believes in", "would probably like"]
       let mood = moods[Math.floor(Math.random()*moods.length)];
 
       this.description = `${starterWord} ${this.adjective} cat who ${mood} ${flourish} ${this.noun}.`
