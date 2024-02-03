@@ -108,6 +108,7 @@ function App() {
 
     setCatObjects(tempList); 
   }, [rawCatData]);
+  
 
   const addToBasket = (cat) => {
     setBasketContents([...basketContents, cat]);
@@ -159,7 +160,6 @@ function App() {
         {infoboxVisible && <CatInfoComponent cat={infoboxObject} addFunc={addToBasket} removeFunc={removeFromBasket}
                             visible={infoboxVisible} setVisible={setinfoboxVisible} basket={basketContents}
                             changeCat={selectNext}/>}
-        <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
       </>
     )
   }
@@ -179,6 +179,8 @@ function App() {
           </div>
           <Ping id="ping" onTransitionEnd={resetPing}/>
         </div>
+        
+        <BasketComponent contents={basketContents} visible={basketVisible} setVisible={setBasketVisible} removeFunc={removeFromBasket}/>
 
         <Routes>
           <Route path = "/" element={<Home content={homeContent}/>}/>
