@@ -71,6 +71,7 @@ function App() {
   const [basketVisible, setBasketVisible] = useState(false);
   const [infoboxObject, setInfoboxObject] = useState(null);
   const [infoboxVisible, setinfoboxVisible] = useState(false);
+  const [selectedCatIndex, setSelectedCatIndex] = useState(0);
 
   useEffect(() => {
     setRawCatData([]); // Prevent an infinite number of cats loading whenever the page rerenders.
